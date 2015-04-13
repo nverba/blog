@@ -14,16 +14,11 @@ describe("statique:", function () { "use strict";
 
   }));
 
-  afterEach(function() {
-   $httpBackend.verifyNoOutstandingExpectation();
-   $httpBackend.verifyNoOutstandingRequest();
-  });
-
   describe("index-service:", function () {
 
     describe("tag index", function () {
       it("should be fetched", function () {
-        return $httpBackend.expect('GET', '/build/indexes/tags.json');
+        $httpBackend.expect('GET', '/build/indexes/tags.json');
       });
     });
   });

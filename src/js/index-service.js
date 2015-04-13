@@ -4,9 +4,12 @@ angular.module('index.service', ['ngNewRouter']).factory("index", ['$router', '$
 
 function IndexServiceFn($router, $http, $q) {
 
+  $http.get('/build/indexes/tags.json');
+
+  console.log('index.json.load');
+
   return {
 
-    
     
   };
 
