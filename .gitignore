@@ -1,2 +1,2 @@
 node_modules
-tests/fake_data
+tests/fake_data/posts/**

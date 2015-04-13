@@ -1,4 +1,5 @@
 {
   "node": true,
-  "predef": [angular"]
+  "multistr": true,
+  "predef": ["angular"]
 }
