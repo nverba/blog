@@ -2,17 +2,28 @@
 
 describe("statique:", function () { "use strict";
 
-  var $scope;
+  var $scope, $httpBackend;
 
-  beforeEach(inject(function($rootScope) {
-    $scope = $rootScope.$new();
+  beforeEach(inject(function($injector) {
+
+    $scope = $injector.get('$rootScope').$new();
+    $httpBackend = $injector.get('$httpBackend');
+
+    $httpBackend.when('GET', '/build.indexes/tags.json')
+      .respond({ "icons":15, "jquery":10, "http":12, "ajax":8 });
+
   }));
+
+  afterEach(function() {
+   $httpBackend.verifyNoOutstandingExpectation();
+   $httpBackend.verifyNoOutstandingRequest();
+  });
 
   describe("index-service:", function () {
 
-    describe("ready", function () {
-      it("should return", function () {
-        return true;
+    describe("tag index", function () {
+      it("should be fetched", function () {
+        return $httpBackend.expect('GET', '/build/indexes/tags.json');
       });
     });
   });
