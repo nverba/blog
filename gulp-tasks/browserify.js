@@ -7,7 +7,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var streamify  = require('gulp-streamify');
 var source     = require('vinyl-source-stream');
 
-gulp.task('browserify', function() {
+gulp.task('js', function() {
 
   var bundleStream = browserify({ entries: './src/js/app.js', debug: true }).bundle();
  

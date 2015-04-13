@@ -10,8 +10,8 @@ var requireDir      = require('require-dir');
 
 requireDir('./gulp-tasks');
 
-gulp.task('watch', ['browserify'], function() {
-  gulp.watch(['components/**/*', 'src/*'], ['browserify']);
+gulp.task('watch', ['js'], function() {
+  gulp.watch(['components/**/*', 'src/*'], ['js']);
 });
 
 gulp.task('default', ['watch']);
