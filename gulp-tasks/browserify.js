@@ -13,6 +13,6 @@ gulp.task('browserify', function() {
  
   bundleStream
     .pipe(source('main.js'))
-    .pipe(streamify(uglify()))
+    //.pipe(streamify(uglify()))
     .pipe(gulp.dest('./build/js'));
 });
