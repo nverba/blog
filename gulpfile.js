@@ -1,5 +1,3 @@
-var fs              = require('fs');
-var del             = require('del');
 var gulp            = require('gulp');
 var map             = require('vinyl-map');
 var jsoncombine     = require('gulp-jsoncombine');

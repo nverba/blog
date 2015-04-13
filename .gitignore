@@ -1,2 +1,4 @@
 node_modules
+tests/fake_data/indexes/**
 tests/fake_data/posts/**
+tests/fake_data/tags/**

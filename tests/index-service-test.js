@@ -12,6 +12,9 @@ describe("statique:", function () { "use strict";
     $httpBackend.when('GET', '/build.indexes/tags.json')
       .respond({ "icons":15, "jquery":10, "http":12, "ajax":8 });
 
+    $httpBackend.when('GET', '/build.indexes/page0.json')
+      .respond({ "icons":15, "jquery":10, "http":12, "ajax":8 });
+
   }));
 
   describe("index-service:", function () {
