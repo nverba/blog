@@ -12,7 +12,7 @@ describe("statique:build-index", function () { "use strict";
     $httpBackend = $injector.get('$httpBackend');
 
     firstIndex = window.__fixtures__.page0;
-    lastIndex = window.__fixtures__.page7;
+    lastIndex = window.__fixtures__.page8;
 
   }));
 
@@ -37,7 +37,7 @@ describe("statique:build-index", function () { "use strict";
       });
 
       it("should not have a next link", function () {
-        assert.equal(lastIndex.previous, 'page6');
+        assert.equal(lastIndex.previous, 'page7');
       });
 
     });
