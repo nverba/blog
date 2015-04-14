@@ -1,32 +1,60 @@
-// function compileTagsFn(data){
+var gulp        = require('gulp');
+var jsoncombine = require('gulp-jsoncombine');
+var fs          = require('fs');
 
-//   var tags = {};
+function buildTags(src, dest, tags_loc) {
 
-//   function eachPostFn(post) {
+  function compileTagsFn(data) {
 
-//     function allocateTagsFn(tag) {
-//       tags[tag] = tags[tag] || [];
-//       tags[tag].push(post.path);
-//     }
+    var tags = {};
 
-//     post.tags.forEach(allocateTagsFn);
-//   }
+    // Iterate post tags & create tag array & push post permalink path data
 
-//   for (var filename in data) {
-//     data[filename].posts.forEach(eachPostFn);
-//   }
+    function getTags(post) {
 
-//   for (var tag in tags) {
-//     fs.writeFile('dist/tags/' + tag + '.json', JSON.stringify(tags[tag]));
-//     tags[tag] = tags[tag].length;
-//   }
+      function allocateTags(tag) {
+        tags[tag] = tags[tag] || [];
+        tags[tag].push(post.key);
+      }
 
-//   return new Buffer(JSON.stringify(tags), "utf-8");
-// }
+      post.tags.forEach(allocateTags);
+    }
 
-// gulp.task('build:tags',  ['build:index'], function() {
+    // Iterate data & Pass each post to getTags
 
-//   return gulp.src(['./dist/indexes/*.json', '!./dist/indexes/tags-index.json'])
-//     .pipe(jsoncombine("tag-index.json", compileTagsFn))
-//     .pipe(gulp.dest('./dist/indexes'));
-// });
+    for (var filename in data) {
+      data[filename].posts.forEach(getTags);
+    }
+
+    // for completed tags object element, create new file in tags directory
+    // then, replace tag path data with .length, i.e. number of documents referencing that tag
+
+    for (var tag in tags) {
+      fs.writeFile(tags_loc + tag + '.json', JSON.stringify(tags[tag]));
+      tags[tag] = tags[tag].length;
+    }
+
+    // return tags as buffer to be passed to dest
+
+    return new Buffer(JSON.stringify(tags), "utf-8");
+  }
+
+  return gulp.src(src)
+    .pipe(jsoncombine("tags.json", compileTagsFn))
+    .pipe(gulp.dest(dest));
+
+}
+
+gulp.task('build.tags', ['build.index'], function () {
+  src  = ['./build/indexes/*.json', '!./build/indexes/tags.json'];
+  dest = './build/indexes';
+  tags_loc = './build/tags/';
+  return buildTags(src, dest, tags_loc);
+});
+
+gulp.task('build.tags.test', ['build.index.test'], function () {
+  src  = ['./tests/fake_data/indexes/*.json', '!./tests/fake_data/indexes/tags.json'];
+  dest = './tests/fake_data/indexes';
+  tags_loc = './tests/fake_data/tags/';
+  return buildTags(src, dest, tags_loc);
+});

@@ -5,7 +5,7 @@ var ext_replace     = require('gulp-ext-replace');
 var groupAggregate  = require('gulp-group-aggregate');
 
 
-function buildIndex(src, dest) {
+function buildIndexFn(src, dest) {
 
   var i = 0;
   var posts_per_page = 10;
@@ -53,11 +53,11 @@ function buildIndex(src, dest) {
 gulp.task('build.index', ['build.flush'], function () {
   src  = './posts/*.*';
   dest = './dist/indexes';
-  return buildIndex(src, dest);
+  return buildIndexFn(src, dest);
 });
 
 gulp.task('build.index.test', ['build.flush.test'], function () {
   src  = './tests/fake_data/posts/*.*';
   dest = './tests/fake_data/indexes';
-  return buildIndex(src, dest);
+  return buildIndexFn(src, dest);
 });

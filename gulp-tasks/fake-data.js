@@ -15,14 +15,14 @@ gulp.task('fake.data', ['clean.fake.data'], function () {
 
   var author = faker.name.firstName();
 
-  var random_tags = {};
-  for (var i=0; i <=3; i++) {
-    random_tags[faker.random.array_element(tags)] = true;
-  }
+  for(var x=0; x<82; x++) {
 
-  for(var x=0; x<82; x++) { 
+    var random_tags = {};
+    for (var i=0; i <=3; i++) {
+      random_tags[faker.random.array_element(tags)] = true;
+    }
 
-    var date = faker.date.past().toISOString().slice(0, 16).replace(/T|:/g, '-');
+    var date = faker.date.past().toISOString().slice(0, 16).replace(/T/, '-').replace(/:/, '');
     var title = faker.company.catchPhrase();
     var key = date + '-' + title.replace(/\s/g, '-').toLowerCase();
     var permalink = key.toLowerCase();
@@ -34,7 +34,7 @@ permalink: posts/" + permalink + "\n\
 key: " + key + "\n\
 tags: [" + Object.keys(random_tags).toString() + "]\n\
 -->\n\
-\n" + faker.lorem.sentences();
+\n" + faker.lorem.paragraphs();
 
     fs.writeFile('./tests/fake_data/posts/' + permalink + '.md', fake_data);
 
