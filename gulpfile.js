@@ -9,7 +9,7 @@ var requireDir      = require('require-dir');
 requireDir('./gulp-tasks');
 
 gulp.task('watch', ['js'], function() {
-  gulp.watch(['components/**/*', 'src/*'], ['js']);
+  gulp.watch(['components/**/*', 'src/**/*'], ['js']);
 });
 
 gulp.task('default', ['watch']);

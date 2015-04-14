@@ -12,6 +12,9 @@ gulp.task('js', function() {
   var bundleStream = browserify({ entries: './src/js/app.js', debug: true }).bundle();
  
   bundleStream
+    .on('error', function(err){
+      console.log(err.message);
+    })
     .pipe(source('main.js'))
     //.pipe(streamify(uglify()))
     .pipe(gulp.dest('./build/js'));
