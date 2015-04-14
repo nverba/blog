@@ -11,7 +11,9 @@ __ToDo:__
 
   - index-service: 
 
-      - initialises with page0 index
+      - initialises with page0 index ✓
+
+      - initialises with tags list ✓
 
       - exposes current index page, from page indexes or search results
 

@@ -19,12 +19,27 @@ describe("statique:", function () { "use strict";
 
   describe("index-service:", function () {
 
-    describe("tag index", function () {
+    describe("init", function () {
       
-      it("should be fetched", function () {
+      it("tag index should be fetched", function () {
         $httpBackend.expect('GET', '/build/indexes/tags.json');
       });
 
+      it("page0 index should be fetched", function () {
+        $httpBackend.expect('GET', '/build/indexes/page0.json');
+      });
+
+      describe("init", function () {
+        
+        it("tag index should be fetched", function () {
+          $httpBackend.expect('GET', '/build/indexes/tags.json');
+        });
+
+        it("page0 index should be fetched", function () {
+          $httpBackend.expect('GET', '/build/indexes/page0.json');
+        });
+
+      });
 
     });
   });
