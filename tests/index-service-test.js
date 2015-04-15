@@ -1,12 +1,12 @@
 /*global console, beforeEach, afterEach, describe, inject, module, it */
 
-describe("statique:", function () { "use strict";
+describe.only("statique:", function () { "use strict";
 
   var $scope, $httpBackend, Index;
 
   beforeEach(module('index.service'));
 
-  beforeEach(inject(function($injector, _index_) {
+  beforeEach(inject(function($injector) {
 
     $scope       = $injector.get('$rootScope').$new();
     $httpBackend = $injector.get('$httpBackend');
@@ -20,16 +20,19 @@ describe("statique:", function () { "use strict";
 
   }));
 
-  beforeEach(function (done) {
-    Index.init().then(function () {
-      done();
-    });
-    $scope.$digest();
+  afterEach(function() {
+   $httpBackend.verifyNoOutstandingExpectation();
+   $httpBackend.verifyNoOutstandingRequest();
   });
 
   describe("index-service:", function () {
 
-    describe("init:", function () {
+    afterEach(function() {
+      Index.init();
+      $httpBackend.flush();
+    });
+
+    describe("loads init files:", function () {
       
       it("tag index should be fetched", function () {
         $httpBackend.expect('GET', '/build/indexes/tags.json');
@@ -39,73 +42,82 @@ describe("statique:", function () { "use strict";
         $httpBackend.expect('GET', '/build/indexes/page0.json');
       });
 
-      describe("indexes:", function () {
-        
-        it("exposes current index page as array", function () {
-          // test
-        });
-
-        it("exposes next", function () {
-          // test
-        });
-
-        it("exposes previous", function () {
-          // test
-        });
-
-        it("exposes next state", function () {
-          // test
-        });
-
-        it("exposes previous state", function () {
-          // test
-        });
-
-        it("paginates results", function () {
-          // test
-        });
-
-      });
-
-      describe("tags:", function () {
-
-        it("exposes tags as an array", function () {
-          //assert.equal(Object.prototype.toString.call(Index.tags), "[object Array]");
-        });
-      });
-
-      describe("tag search:", function () {
-        
-        it("exposes current search results page as array", function () {
-          // test
-        });
-
-        it("exposes next", function () {
-          // test
-        });
-
-        it("exposes previous", function () {
-          // test
-        });
-
-        it("exposes next state", function () {
-          // test
-        });
-
-        it("exposes previous state", function () {
-          // test
-        });
-
-        it("paginates results", function () {
-          // test
-        });
-
-        it("reverts to origin page when tag search cancelled", function () {
-          // test
-        });
-
-      });
-
     });
   });
+
+  beforeEach(function (done) {
+    Index.init().then(function () {
+      done();
+    });
+    $httpBackend.flush();
+  });
+
+  describe("indexes:", function () {
+        
+    it("exposes current index page as array", function () {
+      // test
+    });
+
+    it("exposes next", function () {
+      // test
+    });
+
+    it("exposes previous", function () {
+      // test
+    });
+
+    it("exposes next state", function () {
+      // test
+    });
+
+    it("exposes previous state", function () {
+      // test
+    });
+
+    it("paginates results", function () {
+      // test
+    });
+
+  });
+
+  describe("tags:", function () {
+
+    it("exposes tags as array of strings", function () {
+      assert.equal(Object.prototype.toString.call(Index.tags), "[object Array]");
+      assert.equal(typeof Index.tags[0], 'string');
+    });
+  });
+
+  describe("tag search:", function () {
+    
+    it("exposes current search results page as array", function () {
+      // test
+    });
+
+    it("exposes next", function () {
+      // test
+    });
+
+    it("exposes previous", function () {
+      // test
+    });
+
+    it("exposes next state", function () {
+      // test
+    });
+
+    it("exposes previous state", function () {
+      // test
+    });
+
+    it("paginates results", function () {
+      // test
+    });
+
+    it("reverts to origin page when tag search cancelled", function () {
+      // test
+    });
+
+  });
+
 });
