@@ -4,7 +4,7 @@ require('angular-new-router');
 
 require('./index-service.js');
 
-angular.module('statique', ['ngNewRouter'])
+angular.module('statique', ['ngNewRouter', 'index.service'])
   .controller('RouteController', ['$router', RouteController]);
 
 function RouteController($router) {
