@@ -11,14 +11,38 @@ function IndexServiceFn($router, $http, $q) {
     // Initialise service with Tags and initial Page, returns promise.all
 
     return $q.all([
-      $http.get('/build/indexes/tags.json').then(function (result) {
-        return (Index.tags = Object.keys(result.data));
+      allocateJson('tags', 'tags', function (data) {
+        return Object.keys(data);
       }),
-      $http.get('/build/indexes/page0.json').then(function (result) {
-        return (Index.page = result.data);
-      })
+      allocateJson('page', 'page0').then(updateIndex)
     ]);
   };
+
+  // apply target json to named Index element
+
+  function allocateJson(name, target, modifier) {
+    return $http.get('/build/indexes/' + target + '.json').then(function (result) {
+      return (Index[name] = modifier ? modifier(result.data) : result.data);
+    });
+  }
+
+  function updateIndex(page) {
+
+    // define navigation functions
+
+    angular.forEach(['next', 'previous'], function (navigation) {
+      Index[navigation] = function () {
+        if (Index.page[navigation]) {
+          return allocateJson('page', Index.page[navigation]).then(updateIndex);
+        }
+      };
+    });
+
+    // update navigation state
+
+    Index.hasNext = !!page.next;
+    Index.hasPrev = !!page.previous;
+  }
 
   return Index;
 
