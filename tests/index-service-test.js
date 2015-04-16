@@ -1,6 +1,6 @@
 /*global console, beforeEach, afterEach, describe, inject, module, it */
 
-describe.only("statique: index-service", function () { "use strict";
+describe.skip("statique: index-service", function () { "use strict";
 
   var $scope, $httpBackend, Index;
 

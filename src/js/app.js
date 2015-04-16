@@ -2,9 +2,10 @@ require('angular');
 require('angular-sanitize');
 require('angular-new-router');
 
-require('./index-service.js');
+require('../../components/tag/tag.js');
+require('../../components/index/index.js');
 
-angular.module('statique', ['ngNewRouter', 'index.service'])
+angular.module('statique', ['ngNewRouter', 'statique.tag', 'statique.index'])
   .controller('RouteController', ['$router', RouteController]);
 
 function RouteController($router) {
@@ -12,8 +13,8 @@ function RouteController($router) {
     { 
       path: '/',
       components: {
-        // 'default': 'index',
-        // 'tags': 'tag'
+        'default': 'index',
+        'tags': 'tag'
       }
     }
   ]);

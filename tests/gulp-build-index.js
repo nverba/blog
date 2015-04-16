@@ -2,7 +2,7 @@
 
 // This test assumes the sample index data has been built - $ gulp build.index.test
 
-describe("statique:build-index", function () { "use strict";
+describe.skip("statique:build-index", function () { "use strict";
 
   var $scope, $httpBackend, firstIndex, lastIndex;
 

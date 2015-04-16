@@ -1,0 +1,16 @@
+<button ng-click="index.load(index.page.previous)" ng-disabled="!index.page.previous">Previous</button>
+<button ng-click="index.load(index.page.next)" ng-disabled="!index.page.next">Next</button>
+
+<ul class="index">
+  <li ng-repeat="post in index.page.posts">
+    <a ng-link="post({ id: post.path })" class="index-link">
+      <h2 ng-bind="post.title"></h2>
+    </a>
+    <span ng-bind="post.author"></span>
+    <ul class="inline-tags">
+      <li ng-repeat="tag in post.tags">
+        <a href="#" >{{ tag }}</a>
+      </li>
+    </ul>
+  </li>
+</ul>
