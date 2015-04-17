@@ -34,7 +34,7 @@ function SearchServiceFn($router, $http, $q, $httpBackend) {
       });
 
       angular.forEach(list, function (value, key) {
-        var title = _.trim(key.slice(16), '-');
+        var title = key.slice(16).replace(/-/g, ' ');
         var permalink = 'posts/' + key.toLowerCase() + '.md';
         posts.push({ key: key, tags: value, title: title, permalink: permalink });
       });
@@ -44,6 +44,7 @@ function SearchServiceFn($router, $http, $q, $httpBackend) {
       });
       
     });
+    $router.navigate('/search');
   };
 
   return Search;

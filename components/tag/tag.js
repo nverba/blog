@@ -2,10 +2,10 @@
 
 var _ = require('lodash');
 
-angular.module('statique.tag', [])
-  .controller('TagController', ['$http', '$rootScope', TagControllerFn]);
+angular.module('statique.tag', ['search.service'])
+  .controller('TagController', ['$http', '$rootScope', 'Search', '$router', TagControllerFn]);
 
-function TagControllerFn($http, $rootScope) {
+function TagControllerFn($http, $rootScope, Search, $router) {
 
   this.tags_index = [];
   var last_tags = [];
@@ -23,6 +23,7 @@ function TagControllerFn($http, $rootScope) {
     this.filter      = filterTags(this.search_word, this.tags);
 
     if (!_.isEqual(this.tags, last_tags)) {
+      Search.tags(this.tags);
       last_tags = this.tags;
     }
 

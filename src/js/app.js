@@ -12,6 +12,7 @@ angular.module('statique', ['ngNewRouter', 'statique.tag', 'statique.index', 'st
   .controller('RouteController', ['$router', RouteController]);
 
 function RouteController($router) {
+
   $router.config([
     { 
       path: '/',

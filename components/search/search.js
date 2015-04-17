@@ -1,10 +1,9 @@
 'use strict';
 
-angular.module('statique.search', ['search.service'])
+angular.module('statique.search', ['statique.search'])
   .controller('SearchController', ['Search', '$rootScope', SearchControllerFn]);
 
 function SearchControllerFn(Search, $rootScope) {
-
 
   var searchResults = function () {
     return Search.results;
@@ -14,6 +13,6 @@ function SearchControllerFn(Search, $rootScope) {
     this.results = results;
   });
 
-  $rootScope.watchCollection(searchResults, allocateResults);
+  $rootScope.$watchCollection(searchResults, allocateResults);
 
 }
