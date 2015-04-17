@@ -10,7 +10,7 @@ function IndexControllerFn($http) {
   });
 
   function fetchJson(json) {
-    return $http.get('build/page-index/' + json + '.json');
+    return $http.get('build/indexes/' + json + '.json');
   }
 
   this.load = function loadPage(page) {
@@ -18,5 +18,5 @@ function IndexControllerFn($http) {
   };
 
   // init default index page
-  fetchJson('page0').then(allocatePage);
+  fetchJson('pages/0').then(allocatePage);
 }

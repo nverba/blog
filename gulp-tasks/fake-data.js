@@ -25,7 +25,7 @@ gulp.task('fake.data', ['clean.fake.data'], function () {
     }
 
     var date = faker.date.past().toISOString().slice(0, 16).replace(/T/, '-').replace(/:/, '');
-    var title = faker.company.catchPhrase();
+    var title = faker.company.catchPhrase().replace(/\//, '-');
     var key = date + '-' + title.replace(/\s/g, '-').toLowerCase();
     var permalink = key.toLowerCase();
 
@@ -38,7 +38,7 @@ tags: [" + Object.keys(random_tags).toString() + "]\n\
 -->\n\
 \n" + faker.lorem.paragraphs();
 
-    fs.writeFile('./tests/fake_data/posts/' + permalink + '.md', fake_data);
+    fs.writeFile('./posts/' + permalink + '.md', fake_data);
 
   }
 });

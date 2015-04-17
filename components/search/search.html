@@ -1,0 +1,5 @@
+<ul>
+  <li ng-repeat="post in Search.results">
+    <a ng-link="post({ id: post.permalink })" ng-bind="post.title"></a>
+  </li>
+</ul>

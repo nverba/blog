@@ -3,7 +3,7 @@
 
 <ul class="index">
   <li ng-repeat="post in index.page.posts">
-    <a ng-link="post({ id: post.path })" class="index-link">
+    <a ng-link="post({ id: post.permalink })" class="index-link">
       <h2 ng-bind="post.title"></h2>
     </a>
     <span ng-bind="post.author"></span>

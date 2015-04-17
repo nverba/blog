@@ -25,7 +25,7 @@ describe("statique:build-index", function () { "use strict";
       });
 
       it("should have a next link", function () {
-        assert.equal(firstIndex.next, '1');
+        assert.equal(firstIndex.next, 'pages/1');
       });
 
     });
@@ -37,7 +37,7 @@ describe("statique:build-index", function () { "use strict";
       });
 
       it("should not have a next link", function () {
-        assert.equal(lastIndex.previous, '7');
+        assert.equal(lastIndex.previous, 'pages/7');
       });
 
     });
