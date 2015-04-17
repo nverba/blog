@@ -8,8 +8,8 @@
     </li>
   </ul>
   <ul id="tag-suggest">
-    <li ng-repeat="tag in tag.tags_index | filter: tag.filter" ng-if="tag.search_word">
-      <button ng-click="tag.addTag(tag)" ng-bind="tag"></button>
+    <li ng-repeat="name in tag.tags_index | filter: tag.filter">
+      <button ng-click="tag.addTag(name)" ng-bind="name"></button>
     </li>
   </ul>
 </div>
