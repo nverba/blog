@@ -14,8 +14,8 @@ function buildIndexFn(src, dest) {
 
     var page      = { posts: source };
     group         =  parseInt(group, 10);
-    page.previous = group === 0 ? false : 'page' + (group - 1);
-    page.next     = group === Math.floor(i / posts_per_page) ? false : 'page' + (group + 1);
+    page.previous = group === 0 ? false : (group - 1);
+    page.next     = group === Math.floor(i / posts_per_page) ? false : (group + 1);
 
     return new Buffer(JSON.stringify(page), "utf-8");
   }
@@ -37,7 +37,7 @@ function buildIndexFn(src, dest) {
       });
 
       return {
-        path: 'page' + group + '.json',
+        path: group + '.json',
         contents: createBufferFile(output, group, i)
       };
     }
@@ -52,12 +52,12 @@ function buildIndexFn(src, dest) {
 
 gulp.task('build.index', ['build.flush'], function () {
   src  = './posts/*.*';
-  dest = './dist/indexes';
+  dest = './dist/indexes/pages';
   return buildIndexFn(src, dest);
 });
 
 gulp.task('build.index.test', ['build.flush.test'], function () {
   src  = './tests/fake_data/posts/*.*';
-  dest = './tests/fake_data/indexes';
+  dest = './tests/fake_data/indexes/pages';
   return buildIndexFn(src, dest);
 });

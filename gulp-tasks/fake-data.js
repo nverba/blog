@@ -6,6 +6,8 @@ var fs    = require('fs');
 gulp.task('clean.fake.data', function (cb) {
   del([
     './tests/fake_data/posts/*.*',
+    './tests/fake_data/tags/*.*',
+    './tests/fake_data/indexes/pages/*.*'
   ], cb);
 });
 

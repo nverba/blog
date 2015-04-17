@@ -46,15 +46,15 @@ function buildTags(src, dest, tags_loc) {
 }
 
 gulp.task('build.tags', ['build.index'], function () {
-  src  = ['./build/indexes/*.json', '!./build/indexes/tags.json'];
-  dest = './build/indexes';
+  src  = ['./build/indexes/pages/*.json'];
+  dest = './build/indexes/tags';
   tags_loc = './build/tags/';
   return buildTags(src, dest, tags_loc);
 });
 
 gulp.task('build.tags.test', ['build.index.test'], function () {
-  src  = ['./tests/fake_data/indexes/*.json', '!./tests/fake_data/indexes/tags.json'];
-  dest = './tests/fake_data/indexes';
+  src  = ['./tests/fake_data/indexes/pages/*.json'];
+  dest = './tests/fake_data/indexes/tags';
   tags_loc = './tests/fake_data/tags/';
   return buildTags(src, dest, tags_loc);
 });

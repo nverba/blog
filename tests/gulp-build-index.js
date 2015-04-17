@@ -2,7 +2,7 @@
 
 // This test assumes the sample index data has been built - $ gulp build.index.test
 
-describe.skip("statique:build-index", function () { "use strict";
+describe("statique:build-index", function () { "use strict";
 
   var $scope, $httpBackend, firstIndex, lastIndex;
 
@@ -11,8 +11,8 @@ describe.skip("statique:build-index", function () { "use strict";
     $scope = $injector.get('$rootScope').$new();
     $httpBackend = $injector.get('$httpBackend');
 
-    firstIndex = window.__fixtures__.page0;
-    lastIndex = window.__fixtures__.page8;
+    firstIndex = window.__fixtures__['pages/0'];
+    lastIndex = window.__fixtures__['pages/8'];
 
   }));
 
@@ -25,7 +25,7 @@ describe.skip("statique:build-index", function () { "use strict";
       });
 
       it("should have a next link", function () {
-        assert.equal(firstIndex.next, 'page1');
+        assert.equal(firstIndex.next, '1');
       });
 
     });
@@ -37,7 +37,7 @@ describe.skip("statique:build-index", function () { "use strict";
       });
 
       it("should not have a next link", function () {
-        assert.equal(lastIndex.previous, 'page7');
+        assert.equal(lastIndex.previous, '7');
       });
 
     });
