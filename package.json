@@ -27,6 +27,7 @@
     "gulp-uglify": "^1.1.0",
     "karma": "^0.12.31",
     "karma-chai": "^0.1.0",
+    "karma-chai-plugins": "^0.5.0",
     "karma-chrome-launcher": "^0.1.7",
     "karma-json-fixtures-preprocessor": "0.0.1",
     "karma-mocha": "^0.1.10",

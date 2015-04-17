@@ -10,7 +10,7 @@ function IndexControllerFn($http) {
   });
 
   function fetchJson(json) {
-    return $http.get('build/indexes/' + json + '.json');
+    return $http.get('build/page-index/' + json + '.json');
   }
 
   this.load = function loadPage(page) {

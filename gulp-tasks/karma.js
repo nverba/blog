@@ -4,7 +4,7 @@ var karma = require('karma').server;
 var karmaCommonConf = {
 
   browsers: ['Chrome'],
-  frameworks: ['mocha', 'chai'],
+  frameworks: ['mocha', 'chai', 'chai-as-promised'],
   autoWatch: true,
   preprocessors: {
     './tests/fake_data/**/*.json': ['json_fixtures']
