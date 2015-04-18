@@ -35,7 +35,7 @@ function TagControllerFn($http, $rootScope, Search, $router) {
 
   function filterTags(search_word, matches) {
     return function (tag) {
-      return _.indexOf(matches, tag) && (new RegExp(['^' + search_word])).test(tag);
+      return _.indexOf(matches, tag) && (new RegExp(['^' + search_word], 'i')).test(tag);
     };
   }
 

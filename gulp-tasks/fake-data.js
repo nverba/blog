@@ -32,7 +32,7 @@ gulp.task('fake.data', ['clean.fake.data'], function () {
 var fake_data = "<!--\n\
 title: " + title.charAt(0).toUpperCase() + title.slice(1) + "\n\
 author: " + author + "\n\
-permalink: posts/" + permalink + "\n\
+permalink: " + permalink + "\n\
 key: " + key + "\n\
 tags: [" + Object.keys(random_tags).toString() + "]\n\
 -->\n\
