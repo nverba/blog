@@ -34,7 +34,7 @@ function SearchServiceFn($router, $http, $q, $httpBackend) {
       });
 
       angular.forEach(list, function (value, key) {
-        var title = key.slice(16).replace(/-/g, ' ');
+        var title = key.slice(16).replace(/\b-\b/g, ' ').replace(/--/g, '-');
         var permalink = 'posts/' + key.toLowerCase() + '.md';
         posts.push({ key: key, tags: value, title: title, permalink: permalink });
       });

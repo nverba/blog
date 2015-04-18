@@ -26,7 +26,7 @@ gulp.task('fake.data', ['clean.fake.data'], function () {
 
     var date = faker.date.past().toISOString().slice(0, 16).replace(/T/, '-').replace(/:/, '');
     var title = faker.company.catchPhrase().replace(/\//, '-');
-    var key = date + '-' + title.replace(/\s/g, '-').toLowerCase();
+    var key = date + '-' + title.replace(/-/g, '--').replace(/\s+|>/g, '-');
     var permalink = key.toLowerCase();
 
 var fake_data = "<!--\n\
