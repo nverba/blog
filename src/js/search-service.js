@@ -37,7 +37,7 @@ function SearchServiceFn($router, $http, $q, $httpBackend) {
 
       angular.forEach(list, function (value, key) {
         var title = key.slice(16).replace(/-/g, ' ').replace(/_/g, '-');
-        var link = key.toLowerCase().replace(/_/g, '-');
+        var link  = key.toLowerCase().replace(/_/g, '-');
         posts.push({ key: key, tags: value, title: title, link: link });
       });
 

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('statique.index', [])
+angular.module('index.component', [])
   .controller('IndexController', ['$http', IndexControllerFn]);
 
 function IndexControllerFn($http) {

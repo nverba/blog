@@ -2,7 +2,7 @@
 
 var _ = require('lodash');
 
-angular.module('statique.tag', ['search.service'])
+angular.module('tag.component', ['search.service'])
   .controller('TagController', ['$http', '$rootScope', 'Search', '$router', TagControllerFn]);
 
 function TagControllerFn($http, $rootScope, Search, $router) {

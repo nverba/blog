@@ -1,5 +1,5 @@
 {
-  "name": "Statiue",
+  "name": "statique",
   "version": "0.0.1",
   "description": "An ajax enabled static blog, generated with Gulp.",
   "author": "@nverba <distantstate@gmail.com>",

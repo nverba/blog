@@ -9,7 +9,7 @@ require('../../components/post/post.js');
 require('../../components/index/index.js');
 require('../../components/search/search.js');
 
-angular.module('statique', ['ngNewRouter', 'statique.tag', 'statique.index', 'statique.search', 'search.service', 'statique.post'])
+angular.module('statique', ['ngNewRouter', 'index.component', 'post.component', 'search.component', 'tag.component', 'search.service'])
   .controller('RouteController', ['$router', RouteController]);
 
 function RouteController($router) {

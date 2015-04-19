@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('statique.search', ['statique.search'])
+angular.module('search.component', ['search.service'])
   .controller('SearchController', ['Search', '$rootScope', SearchControllerFn]);
 
 function SearchControllerFn(Search, $rootScope) {
