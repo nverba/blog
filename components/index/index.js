@@ -5,18 +5,18 @@ angular.module('index.component', [])
 
 function IndexControllerFn($http) {
 
-  var allocatePage = angular.bind(this, function allocatePage(page) {
-    this.page = page.data;
+  var allocatePage = angular.bind(this, function allocatePage(result) {
+    this.page = result.data;
   });
 
-  function fetchJson(json) {
-    return $http.get('build/indexes/' + json + '.json');
+  function fetchJson(id) {
+    return $http.get('build/indexes/pages/' + id + '.json');
   }
 
-  this.load = function loadPage(page) {
-    fetchJson(page).then(allocatePage);
+  this.load = function loadPage(id) {
+    fetchJson(id).then(allocatePage);
   };
 
   // init default index page
-  fetchJson('pages/0').then(allocatePage);
+  fetchJson('0').then(allocatePage);
 }
