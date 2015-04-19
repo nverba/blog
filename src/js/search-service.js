@@ -14,6 +14,8 @@ function SearchServiceFn($router, $http, $q, $httpBackend) {
 
   Search.tags = function (newTags) {
 
+    if (newTags.length < 1) { window.history.back();  }
+
     var list = {};
     var posts = [];
 
@@ -34,9 +36,9 @@ function SearchServiceFn($router, $http, $q, $httpBackend) {
       });
 
       angular.forEach(list, function (value, key) {
-        var title = key.slice(16).replace(/\b-\b/g, ' ').replace(/--/g, '-');
-        var permalink = 'posts/' + key.toLowerCase() + '.md';
-        posts.push({ key: key, tags: value, title: title, permalink: permalink });
+        var title = key.slice(16).replace(/-/g, ' ').replace(/_/g, '-');
+        var link = key.toLowerCase().replace(/_/g, '-');
+        posts.push({ key: key, tags: value, title: title, link: link });
       });
 
       Search.results = _.sortBy(posts, function(post) {

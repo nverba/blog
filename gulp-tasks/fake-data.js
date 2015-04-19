@@ -24,10 +24,10 @@ gulp.task('fake.data', ['clean.fake.data'], function () {
       random_tags[faker.random.array_element(tags)] = true;
     }
 
-    var date = faker.date.past().toISOString().slice(0, 16).replace(/T/, '-').replace(/:/, '');
+    var date  = faker.date.past().toISOString().slice(0, 16).replace(/T/, '-').replace(/:/, '');
     var title = faker.company.catchPhrase().replace(/\//, '-');
-    var key = date + '-' + title.replace(/-/g, '--').replace(/\s+|>/g, '-');
-    var permalink = key.toLowerCase();
+    var key   = date + '-' + title.replace(/-/g, '_').replace(/\s+/g, '-');
+    var permalink = date + '-' + title.replace(/\s+/g, '-').toLowerCase();
 
 var fake_data = "<!--\n\
 title: " + title.charAt(0).toUpperCase() + title.slice(1) + "\n\

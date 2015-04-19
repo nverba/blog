@@ -1,6 +1,6 @@
 <ul>
   <li ng-repeat="post in search.results">
-    <a ng-link="post({ id: post.permalink })" ng-bind="post.title"></a>
+    <a ng-link="post({ id: post.link })" ng-bind="post.title"></a>
     <span ng-repeat="tag in post.tags" ng-bind="tag"></span>
   </li>
 </ul>

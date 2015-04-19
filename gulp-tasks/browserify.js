@@ -19,3 +19,7 @@ gulp.task('js', function() {
     //.pipe(streamify(uglify()))
     .pipe(gulp.dest('./build/js'));
 });
+
+gulp.task('watch.js', ['js'], function() {
+  gulp.watch(['components/**/*', 'src/**/*'], ['js']);
+});
