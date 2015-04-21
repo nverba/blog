@@ -52,12 +52,12 @@ function buildIndexFn(src, dest) {
 
 gulp.task('build.index', ['build.flush'], function () {
   src  = './posts/*.*';
-  dest = './build/indexes/pages';
+  dest = './build/indexes/posts';
   return buildIndexFn(src, dest);
 });
 
 gulp.task('build.index.test', ['build.flush.test'], function () {
   src  = './tests/fake_data/posts/*.*';
-  dest = './tests/fake_data/indexes/pages';
+  dest = './tests/fake_data/indexes/posts';
   return buildIndexFn(src, dest);
 });

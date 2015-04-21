@@ -6,21 +6,23 @@ require('./search-service.js');
 
 require('../../components/tag/tag.js');
 require('../../components/post/post.js');
-require('../../components/index/index.js');
+require('../../components/posts/posts.js');
 require('../../components/search/search.js');
 
-angular.module('statique', ['ngNewRouter', 'index.component', 'post.component', 'search.component', 'tag.component', 'search.service'])
+angular.module('statique', ['ngNewRouter', 'posts.component', 'post.component', 'search.component', 'tag.component', 'search.service'])
   .controller('RouteController', ['$router', RouteController]);
 
 function RouteController($router) {
 
   $router.config([
+    { path: '/', redirectTo: '/posts' },
     { 
-      path: '/',
+      path: '/posts',
       components: {
-        'default': 'index',
+        'default': 'posts',
         'tags': 'tag'
-      }
+      },
+      dynamic: true
     },
     { 
       path: '/post/:id',
@@ -34,7 +36,8 @@ function RouteController($router) {
       components: {
         'default': 'search',
         'tags': 'tag'
-      }
+      },
+      dynamic: true
     }
   ]);
 }

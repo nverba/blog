@@ -1,9 +1,11 @@
 'use strict';
 
-angular.module('search.component', ['search.service'])
-  .controller('SearchController', ['Search', '$rootScope', SearchControllerFn]);
+angular.module('search.component', ['ngNewRouter', 'search.service'])
+  .controller('SearchController', ['Search', '$rootScope', '$routeParams', SearchControllerFn]);
 
-function SearchControllerFn(Search, $rootScope) {
+function SearchControllerFn(Search, $rootScope, $routeParams) {
+
+  console.log($routeParams);
 
   var searchResults = function () {
     return Search.results;

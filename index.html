@@ -12,8 +12,8 @@
 <body ng-app="statique" ng-controller="RouteController">
 
   <aside>
-    <a ng-link="index()">
-      
+    <a ng-link="index( { queryParams: { page: 0 }})">
+      HOME
     </a>
     <div ng-viewport="tags"></div>
   </aside>

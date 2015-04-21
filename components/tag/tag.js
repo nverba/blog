@@ -2,10 +2,10 @@
 
 var _ = require('lodash');
 
-angular.module('tag.component', ['search.service'])
-  .controller('TagController', ['$http', '$rootScope', 'Search', '$router', TagControllerFn]);
+angular.module('tag.component', ['search.service', 'ngNewRouter'])
+  .controller('TagController', ['$http', '$rootScope', 'Search', '$router', '$routeParams', TagControllerFn]);
 
-function TagControllerFn($http, $rootScope, Search, $router) {
+function TagControllerFn($http, $rootScope, Search, $router, $routeParams) {
 
   this.tags_index = [];
   var last_tags = [];
