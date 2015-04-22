@@ -4,6 +4,8 @@ tests/fake_data/indexes/**
 tests/fake_data/posts/**
 tests/fake_data/tags/**
 
+statique.sublime-workspace
+
 build/indexes
 build/tags
 posts

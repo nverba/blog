@@ -21,5 +21,5 @@ gulp.task('js', function() {
 });
 
 gulp.task('watch.js', ['js'], function() {
-  gulp.watch(['components/**/*', 'src/**/*'], ['js']);
+  gulp.watch(['components/**/*', 'src/**/*', 'node_modules/angular-new-router/dist/router.es5.js'], ['js']);
 });
