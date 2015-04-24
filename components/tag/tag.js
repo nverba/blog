@@ -3,29 +3,38 @@
 var _ = require('lodash');
 
 angular.module('tag.component', ['search.service', 'ngNewRouter'])
-  .controller('TagController', ['$http', '$rootScope', 'Search', '$router', '$routeParams', TagControllerFn]);
+  .controller('TagController', ['$http', '$rootScope', '$router', '$location', TagControllerFn])
+  .directive('focusInput', [FocusInputDirectiveFn]);
 
-function TagControllerFn($http, $rootScope, Search, $router, $routeParams) {
+function TagControllerFn($http, $rootScope, $router, $location) {
 
-  this.tags_index = [];
   var last_tags = [];
 
-  var searchString = angular.bind(this, function searchStringFn() {
+  this.unmatched_word = '';
+  this.tags = [];
+  this.filter = {};
+
+  var params = ($location.search()["tags[]"] || '').toString().replace(/,/g, ' ');
+
+  this.searchString = angular.bind(this, function searchStringFn() {
     return this.search_string;
   });
 
-  var updateTags = angular.bind(this, function (newValue) { if (!newValue) { return; }
+  var updateTags = angular.bind(this, function (newValue, oldValue) {
 
-    var words = _.uniq(_.words(newValue));
+    var words = _.uniq(_.words(newValue)); 
 
-    this.search_word = _.last(_.difference(words, this.tags_index));
-    this.tags        = _.without(words, this.search_word);
-    this.filter      = filterTags(this.search_word, this.tags);
+    this.init.then(function (tags_index) {
 
-    if (!_.isEqual(this.tags, last_tags)) {
-      Search.tags(this.tags);
-      last_tags = this.tags;
-    }
+      this.unmatched_word = _.last(_.difference(words, tags_index));
+      this.tags        = _.without(words, this.unmatched_word);
+      this.filter      = filterTags(this.unmatched_word, this.tags);
+
+      if (!this.unmatched_word) {
+        $location.url($router.generate('search', { queryParams: { tags: this.tags }  }));
+        last_tags = this.tags;
+      }
+    }.bind(this));
 
   });
 
@@ -33,9 +42,9 @@ function TagControllerFn($http, $rootScope, Search, $router, $routeParams) {
     return (this.tags_index = _.keys(response.data));
   });
 
-  function filterTags(search_word, matches) {
+  function filterTags(unmatched_word, matched) {
     return function (tag) {
-      return _.indexOf(matches, tag) && (new RegExp(['^' + search_word], 'i')).test(tag);
+      return _.indexOf(matched, tag) < 0 && (new RegExp(['^' + unmatched_word], 'i')).test(tag);
     };
   }
 
@@ -43,7 +52,31 @@ function TagControllerFn($http, $rootScope, Search, $router, $routeParams) {
     this.search_string = this.search_string.replace(/\S+$/, tag + ' ');
   };
 
-  this.init = $http.get('build/indexes/tags/tags.json').then(allocateTags);
-  $rootScope.$watchCollection(searchString, updateTags);
+  $rootScope.$watchCollection(this.searchString, updateTags);
 
+  this.init = $http.get('build/indexes/tags/tags.json').then(allocateTags);
+  this.search_string = params ? params + ' ' : '';
+
+}
+
+// DIRECTIVE FUNCTIONS
+
+function FocusInputDirectiveFn() {
+  return {
+    restrict: 'A',
+    scope: true,
+    link: focusInputLink
+  };
+
+  function focusInputLink(scope, $element, attrs) {
+
+    scope.$watchCollection('tag.search_string', function (newValue) {
+      
+      if (newValue.length) {
+        $element[0].focus();
+      }
+
+    });
+
+  }
 }

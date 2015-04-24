@@ -1,9 +1,9 @@
-<input id="tag-input" placeholder="search" 
+<input id="tag-input" ng-change="tag.log()" focus-input placeholder="search" 
   ng-model="tag.search_string" 
   ng-model-options="{ updateOn: 'default blur', debounce: {'default': 250, 'blur': 0} }">
 <div id="search-feedback" ng-class="{active: tag.search_string}">
   <ul id="tag-match">
-    <li ng-repeat="(tag, value) in tag.matches">
+    <li ng-repeat="tag in tag.tags">
       <button ng-bind="tag"></button>
     </li>
   </ul>

@@ -2,9 +2,9 @@
 
 var _ = require('lodash');
 
-angular.module('search.service', ['ngNewRouter']).factory("Search", ['$router', '$http', '$q', '$httpBackend', SearchServiceFn]);
+angular.module('search.service', ['ngNewRouter']).factory("Search", ['$location', '$router', '$http', '$q', '$httpBackend', SearchServiceFn]);
 
-function SearchServiceFn($router, $http, $q, $httpBackend) {
+function SearchServiceFn($location, $router, $http, $q, $httpBackend) {
 
   var Search = {};
   var tags   = {};
@@ -14,10 +14,11 @@ function SearchServiceFn($router, $http, $q, $httpBackend) {
 
   Search.tags = function (newTags) {
 
-    if (newTags.length < 1) { window.history.back();  }
+    //if (newTags.length < 1) { window.history.back();  }
 
     var list = {};
     var posts = [];
+    var params = {};
 
     angular.forEach(newTags, function (name) {
       if (!tags[name]) {
@@ -46,7 +47,9 @@ function SearchServiceFn($router, $http, $q, $httpBackend) {
       });
       
     });
-    $router.navigate('/search');
+
+    $location.url($router.generate('search', { queryParams: { tags: newTags }  }));
+      
   };
 
   return Search;

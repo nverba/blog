@@ -5,8 +5,6 @@ angular.module('search.component', ['ngNewRouter', 'search.service'])
 
 function SearchControllerFn(Search, $rootScope, $routeParams) {
 
-  console.log($routeParams);
-
   var searchResults = function () {
     return Search.results;
   };
