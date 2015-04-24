@@ -6,7 +6,13 @@ angular.module('tag.component', ['search.service', 'ngNewRouter'])
   .controller('TagController', ['$http', '$rootScope', '$router', '$location', TagControllerFn])
   .directive('focusInput', [FocusInputDirectiveFn]);
 
+var PATH_HISTORY;
+
 function TagControllerFn($http, $rootScope, $router, $location) {
+
+  if ($location.path() !== '/search') {
+    PATH_HISTORY = $location.url();
+  }
 
   var last_tags = [];
 
@@ -21,6 +27,12 @@ function TagControllerFn($http, $rootScope, $router, $location) {
   });
 
   var updateTags = angular.bind(this, function (newValue, oldValue) {
+
+    if (!newValue && $location.path() === '/search') {
+      $location.url(PATH_HISTORY || '/posts');
+    }
+
+    if (!newValue) { return; } 
 
     var words = _.uniq(_.words(newValue)); 
 
