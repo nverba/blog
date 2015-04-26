@@ -84,7 +84,7 @@ function routerFactory($$rootRouter, $rootScope, $location, $$grammar, $controll
   });
 
   $rootScope.$watch(function () {
-    return $location.path();
+    return $location.url();
   }, function (newUrl) {
     $$rootRouter.navigate(newUrl);
   });
@@ -93,7 +93,7 @@ function routerFactory($$rootRouter, $rootScope, $location, $$grammar, $controll
   $$rootRouter.navigate = function (url) {
     return nav.call(this, url).then(function (newUrl) {
       if (newUrl) {
-        $location.path(newUrl);
+        $location.url(newUrl);
       }
     });
   }
@@ -176,7 +176,7 @@ function ngViewportDirective($animate, $injector, $q, $router) {
       activate: function(instruction) {
         var nextInstruction = serializeInstruction(instruction);
         if (nextInstruction === previousInstruction) {
-          return;
+        // commented out to allow parameters to refresh viewports return;
         }
 
         instruction.locals.$scope = newScope = scope.$new();
