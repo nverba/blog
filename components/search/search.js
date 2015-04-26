@@ -12,11 +12,12 @@ function SearchControllerFn($rootScope, $location, $http, $q) {
 
   var list = {};
   var posts = [];
-  var params = [].concat($location.search()["tags[]"]);
+  var params = $location.search()["tags[]"];
+  var params_array = params ? [].concat(params) : undefined;
 
   // Push promises to ready
 
-  angular.forEach(params, function (name) {
+  angular.forEach(params_array, function (name) {
     if (!tags[name]) {
       ready.push($http.get('/build/tags/' + name + '.json').then(function (result) {
         tags[name] = result.data;
@@ -27,7 +28,7 @@ function SearchControllerFn($rootScope, $location, $http, $q) {
   // When all tags loaded
 
   $q.all(ready).then(function () {
-    angular.forEach(_.pick(tags, params), function (value, key) {
+    angular.forEach(_.pick(tags, params_array), function (value, key) {
       angular.forEach(value, function (url) {
         list[url] = list[url] || [];
         list[url].push(key);

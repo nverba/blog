@@ -20,6 +20,8 @@ function TagControllerFn($http, $rootScope, $router, $location) {
     return this.search_string;
   });
 
+  // Prevent reinitialising on extra calls by router...   bug with router atm.
+
   if ($location.url() === LOCATION) { this.search_string = ''; return; }
   LOCATION = $location.url();
 
