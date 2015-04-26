@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var del  = require('del');
 
-gulp.task('build.flush', function (cb) {
+gulp.task('build:flush', function (cb) {
   del([
     'build/indexes/pages/*.*',
     'build/indexes/tags/*.*',
@@ -9,7 +9,7 @@ gulp.task('build.flush', function (cb) {
   ], cb);
 });
 
-gulp.task('build.flush.test', function (cb) {
+gulp.task('build:flush:test', function (cb) {
   del([
     'tests/fake_data/indexes/**',
     'tests/fake_data/tags/*.*'

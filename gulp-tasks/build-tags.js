@@ -45,14 +45,14 @@ function buildTags(src, dest, tags_loc) {
 
 }
 
-gulp.task('build.tags', ['build.index'], function () {
+gulp.task('build:tags', ['build:index'], function () {
   src  = ['./build/indexes/pages/*.json'];
   dest = './build/indexes/tags';
   tags_loc = './build/tags/';
   return buildTags(src, dest, tags_loc);
 });
 
-gulp.task('build.tags.test', ['build.index.test'], function () {
+gulp.task('build:tags:test', ['build:index:test'], function () {
   src  = ['./tests/fake_data/indexes/pages/*.json'];
   dest = './tests/fake_data/indexes/tags';
   tags_loc = './tests/fake_data/tags/';

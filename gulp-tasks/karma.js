@@ -25,6 +25,6 @@ var karmaCommonConf = {
   }
 };
 
-gulp.task('karma', function (done) {
+gulp.task('test:karma', function (done) {
   karma.start(karmaCommonConf, done);
 });

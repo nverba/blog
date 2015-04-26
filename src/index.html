@@ -6,14 +6,19 @@
   <base href="/">
   <title>Statique</title>
 
-  <link rel="stylesheet" href="build/css/all.css">
+  <link rel="stylesheet" href="build/css/main.css">
+
+  <style type="text/css">
+    /* inject:css */
+    /* endinject */
+  </style>
 
 </head>
 <body ng-app="statique" ng-controller="RouteController">
 
   <aside>
-    <a ng-link="index( page: '0' )">
-      
+    <!-- profile:img --><!-- endinject -->
+    <a ng-link="posts({ queryParams: { page: 0 }})">
     </a>
     <div ng-viewport="tags"></div>
   </aside>
@@ -22,7 +27,7 @@
     <div ng-viewport class="markdown-body"></div>
   </section>
 
-  <script src="build/js/all.js"></script>
+  <script src="build/js/main.js"></script>
 
 </body>
 </html>

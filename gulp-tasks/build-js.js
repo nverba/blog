@@ -7,7 +7,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var streamify  = require('gulp-streamify');
 var source     = require('vinyl-source-stream');
 
-gulp.task('js', function() {
+gulp.task('build:js', function() {
 
   var bundleStream = browserify({ entries: './src/js/app.js', debug: true }).bundle();
  
@@ -20,6 +20,6 @@ gulp.task('js', function() {
     .pipe(gulp.dest('./build/js'));
 });
 
-gulp.task('watch.js', ['js'], function() {
+gulp.task('watch:js', ['build:js'], function() {
   gulp.watch(['components/**/*', 'src/**/*', 'node_modules/angular-new-router/dist/router.es5.js'], ['js']);
 });
