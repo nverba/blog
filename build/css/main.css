@@ -717,13 +717,18 @@ section {
   text-decoration: none;
 }
 
-.index .inline-tags {
+.inline-tags {
   float: right;
 }
 
-.index .inline-tags li {
+.inline-tags li {
   display: inline-block;
   margin-left: 7px;
+}
+
+.post-tags {
+  display: block;
+  height: 30px;
 }
 
 #tag-input {

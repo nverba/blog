@@ -1,1 +1,11 @@
+<h2 ng-bind="post.meta.title"></h2>
+
+<div class="post-tags">
+  <ul class="inline-tags">
+    <li ng-repeat="tag in post.meta.tags">
+      <a ng-bind="tag" ng-link="search({ queryParams: { tags: [tag]}})"></a>
+    </li>
+  </ul>
+</div>
+
 <div ng-bind-html="post.markdown"></div>
