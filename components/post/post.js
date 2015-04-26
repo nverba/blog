@@ -7,6 +7,8 @@ angular.module('post.component', ['ngNewRouter', 'ngSanitize'])
 
 function PostControllerFn ($http, $routeParams, $sce) {
 
+  //debugger;
+
   $http.get('posts/' + $routeParams.id + '.md' )
     .then(function(res){
       this.markdown =  $sce.trustAsHtml(marked(res.data));

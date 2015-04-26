@@ -12,7 +12,7 @@
 <body ng-app="statique" ng-controller="RouteController">
 
   <aside>
-    <a ng-link="posts()">
+    <a ng-link="posts({ queryParams: { page: 0 }})">
       HOME
     </a>
     <div ng-viewport="tags"></div>

@@ -1,18 +1,48 @@
 'use strict';
 
-angular.module('search.component', ['ngNewRouter', 'search.service'])
-  .controller('SearchController', ['Search', '$rootScope', '$routeParams', SearchControllerFn]);
+var _ = require('lodash');
 
-function SearchControllerFn(Search, $rootScope, $routeParams) {
+angular.module('search.component', ['ngNewRouter'])
+  .controller('SearchController', ['$rootScope', '$location', '$http', '$q', SearchControllerFn]);
 
-  var searchResults = function () {
-    return Search.results;
-  };
+var tags   = {};
+var ready  = [];
 
-  var allocateResults = angular.bind(this, function (results) {
-    this.results = results;
+function SearchControllerFn($rootScope, $location, $http, $q) {
+
+  var list = {};
+  var posts = [];
+  var params = [].concat($location.search()["tags[]"]);
+
+  // Push promises to ready
+
+  angular.forEach(params, function (name) {
+    if (!tags[name]) {
+      ready.push($http.get('/build/tags/' + name + '.json').then(function (result) {
+        tags[name] = result.data;
+      }));
+    }
   });
 
-  $rootScope.$watchCollection(searchResults, allocateResults);
+  // When all tags loaded
 
+  $q.all(ready).then(function () {
+    angular.forEach(_.pick(tags, params), function (value, key) {
+      angular.forEach(value, function (url) {
+        list[url] = list[url] || [];
+        list[url].push(key);
+      });
+    });
+
+    angular.forEach(list, function (value, key) {
+      var title = key.slice(16).replace(/-/g, ' ').replace(/_/g, '-');
+      var link  = key.toLowerCase().replace(/_/g, '-');
+      posts.push({ key: key, tags: value, title: title, link: link });
+    });
+
+    this.results = _.sortBy(posts, function(post) {
+      return 1 - post.tags.length;
+    });
+    
+  }.bind(this));
 }

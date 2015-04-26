@@ -2,14 +2,12 @@ require('angular');
 require('angular-sanitize');
 require('angular-new-router');
 
-require('./search-service.js');
-
 require('../../components/tag/tag.js');
 require('../../components/post/post.js');
 require('../../components/posts/posts.js');
 require('../../components/search/search.js');
 
-angular.module('statique', ['ngNewRouter', 'posts.component', 'post.component', 'search.component', 'tag.component', 'search.service'])
+angular.module('statique', ['ngNewRouter', 'posts.component', 'post.component', 'search.component', 'tag.component'])
   .controller('RouteController', ['$router', RouteController]);
 
 function RouteController($router) {

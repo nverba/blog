@@ -2,29 +2,32 @@
 
 var _ = require('lodash');
 
-angular.module('tag.component', ['search.service', 'ngNewRouter'])
+angular.module('tag.component', ['ngNewRouter'])
   .controller('TagController', ['$http', '$rootScope', '$router', '$location', TagControllerFn])
   .directive('focusInput', [FocusInputDirectiveFn]);
 
 var PATH_HISTORY;
+var LOCATION;
 
 function TagControllerFn($http, $rootScope, $router, $location) {
+
+  var last_tags = [];
+  this.unmatched_word = '';
+  this.tags = [];
+  this.filter = {};
+
+  this.searchString = angular.bind(this, function searchStringFn() {
+    return this.search_string;
+  });
+
+  if ($location.url() === LOCATION) { this.search_string = ''; return; }
+  LOCATION = $location.url();
 
   if ($location.path() !== '/search') {
     PATH_HISTORY = $location.url();
   }
 
-  var last_tags = [];
-
-  this.unmatched_word = '';
-  this.tags = [];
-  this.filter = {};
-
   var params = ($location.search()["tags[]"] || '').toString().replace(/,/g, ' ');
-
-  this.searchString = angular.bind(this, function searchStringFn() {
-    return this.search_string;
-  });
 
   var updateTags = angular.bind(this, function (newValue, oldValue) {
 
@@ -65,7 +68,6 @@ function TagControllerFn($http, $rootScope, $router, $location) {
   };
 
   $rootScope.$watchCollection(this.searchString, updateTags);
-
   this.init = $http.get('build/indexes/tags/tags.json').then(allocateTags);
   this.search_string = params ? params + ' ' : '';
 
