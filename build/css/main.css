@@ -1,9 +1,64 @@
 /* inject:scss */
-#posts-container ul {
-  list-style: none; }
-  #posts-container ul li a {
-    text-decoration: none;
-    color: #333; }
+#posts-container {
+  color: #838383; }
+  #posts-container .posts-nav {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    overflow: hidden; }
+    #posts-container .posts-nav a {
+      border-radius: 3px;
+      text-decoration: none;
+      color: #999;
+      padding: 10px;
+      background-color: #EFE8EE;
+      position: relative; }
+    #posts-container .posts-nav a.prev {
+      float: left; }
+    #posts-container .posts-nav a.next {
+      float: right; }
+  #posts-container ul {
+    list-style: none;
+    padding-left: 0; }
+    #posts-container ul li {
+      display: block;
+      position: relative; }
+      #posts-container ul li a {
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        display: block;
+        font-weight: bold;
+        color: #333; }
+  #posts-container .post-detail {
+    display: block;
+    width: 100%;
+    height: 1.2em;
+    font-size: 0.8em;
+    position: relative;
+    margin-bottom: 22px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #E7E7E7; }
+    #posts-container .post-detail span {
+      float: left; }
+    #posts-container .post-detail ul.inline-tags {
+      padding-left: 0;
+      position: relative;
+      float: right; }
+      #posts-container .post-detail ul.inline-tags li {
+        display: inline-block;
+        margin-right: 5px; }
+        #posts-container .post-detail ul.inline-tags li a {
+          color: #838383; }
+        #posts-container .post-detail ul.inline-tags li a:hover {
+          text-decoration: underline; }
+  @media (max-width: 500px) {
+    #posts-container .post-detail span {
+      display: block;
+      width: 100%; }
+    #posts-container .post-detail ul.inline-tags {
+      display: block;
+      float: left; } }
 
 #tags-input-container #search-input {
   margin: 0;
