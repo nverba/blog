@@ -3,6 +3,7 @@
 <head>
 
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <base href="/">
   <title>Statique</title>
 
@@ -16,16 +17,21 @@
 </head>
 <body ng-app="statique" ng-controller="RouteController">
 
-  <aside>
-    <!-- profile:img --><!-- endinject -->
-    <a ng-link="posts({ queryParams: { page: 0 }})">
+  <div id="aside">
+    <a ng-link="posts()">
+      <!-- profile:img --><!-- endinject -->
     </a>
-    <div ng-viewport="tags"></div>
-  </aside>
+    <div id="tag-line">
+      <h2>Maybe?</h2>
+    </div>
+    <div id="tags-input-container">
+      <div ng-viewport="tags"></div>
+    </div>
+  </div>
 
-  <section>
-    <div ng-viewport class="markdown-body"></div>
-  </section>
+  <div id="markdown-body">
+    <div ng-viewport></div>
+  </div>
 
   <script src="build/js/main.js"></script>
 

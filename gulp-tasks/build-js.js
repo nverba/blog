@@ -16,10 +16,10 @@ gulp.task('build:js', function() {
       console.log(err.message);
     })
     .pipe(source('main.js'))
-    //.pipe(streamify(uglify()))
+    .pipe(streamify(uglify()))
     .pipe(gulp.dest('./build/js'));
 });
 
 gulp.task('watch:js', ['build:js'], function() {
-  gulp.watch(['components/**/*', 'src/**/*', 'node_modules/angular-new-router/dist/router.es5.js'], ['js']);
+  gulp.watch(['components/**/*', 'src/**/*', 'node_modules/angular-new-router/dist/router.es5.js'], ['build:js']);
 });

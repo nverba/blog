@@ -1,15 +1,18 @@
-<input id="tag-input" ng-change="tag.log()" focus-input placeholder="search" 
+<input id="search-input" ng-change="tag.log()" focus-input placeholder="search" 
   ng-model="tag.search_string" 
   ng-model-options="{ updateOn: 'default blur', debounce: {'default': 250, 'blur': 0} }">
+
+<ul id="search-suggest">
+  <li ng-repeat="name in tag.tags_index | filter: tag.filter">
+    <button ng-click="tag.addTag(name)" ng-bind="name"></button>
+  </li>
+</ul>
+  
 <div id="search-feedback" ng-class="{active: tag.search_string}">
-  <ul id="tag-match">
+<!--   <ul id="tag-match">
     <li ng-repeat="tag in tag.tags">
       <button ng-bind="tag"></button>
     </li>
-  </ul>
-  <ul id="tag-suggest">
-    <li ng-repeat="name in tag.tags_index | filter: tag.filter">
-      <button ng-click="tag.addTag(name)" ng-bind="name"></button>
-    </li>
-  </ul>
+  </ul> -->
+
 </div>

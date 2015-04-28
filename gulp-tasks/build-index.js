@@ -27,3 +27,7 @@ gulp.task('build:index', function () {
     ))
     .pipe(gulp.dest('./'));
 });
+
+gulp.task('watch:index', ['build:index'], function() {
+  gulp.watch(['./src/scss/*.*', './src/images/*.*', './src/index.html'], ['build:index']);
+});
