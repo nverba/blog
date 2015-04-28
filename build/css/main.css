@@ -1,4 +1,10 @@
 /* inject:scss */
+#posts-container ul {
+  list-style: none; }
+  #posts-container ul li a {
+    text-decoration: none;
+    color: #333; }
+
 #tags-input-container #search-input {
   margin: 0;
   width: 100%;

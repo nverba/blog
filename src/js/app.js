@@ -2,6 +2,7 @@ require('angular');
 require('angular-sanitize');
 require('angular-new-router');
 
+require('./filters.js');
 require('../../components/tag/tag.js');
 require('../../components/post/post.js');
 require('../../components/posts/posts.js');
