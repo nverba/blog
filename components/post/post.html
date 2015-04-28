@@ -1,11 +1,15 @@
-<h2 ng-bind="post.meta.title"></h2>
+<div id="post-content">
+  
+  <a ng-href="{{ post.meta.permalink }}"><h2 ng-bind="post.meta.title"></h2></a>
 
-<div class="post-tags">
-  <ul class="inline-tags">
-    <li ng-repeat="tag in post.meta.tags">
-      <a ng-bind="tag" ng-link="search({ queryParams: { tags: [tag]}})"></a>
-    </li>
-  </ul>
+  <div class="post-detail">
+    <span ng-bind="post.meta.date | parseUrlDate | date:'mediumDate'"></span>
+    <ul class="inline-tags">Tags:
+      <li ng-repeat="tag in post.meta.tags">
+        <a ng-bind="tag" ng-link="search({ queryParams: { tags: [tag]}})"></a>
+      </li>
+    </ul>
+  </div>
+
+  <div ng-bind-html="post.markdown"></div>
 </div>
-
-<div ng-bind-html="post.markdown"></div>

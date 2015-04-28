@@ -1,4 +1,33 @@
 /* inject:scss */
+#post-content a {
+  text-decoration: none;
+  color: #333; }
+#post-content .post-detail {
+  display: block;
+  width: 100%;
+  height: 1.2em;
+  font-size: 0.8em;
+  position: relative;
+  margin-bottom: 22px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #E7E7E7;
+  color: #838383; }
+  #post-content .post-detail span {
+    float: left; }
+  #post-content .post-detail ul.inline-tags {
+    margin: 0;
+    padding-left: 0;
+    position: relative;
+    float: right; }
+    #post-content .post-detail ul.inline-tags li {
+      display: inline-block;
+      margin-right: 5px; }
+      #post-content .post-detail ul.inline-tags li a {
+        color: #838383;
+        font-weight: bold; }
+      #post-content .post-detail ul.inline-tags li a:hover {
+        text-decoration: underline; }
+
 #posts-container {
   color: #838383; }
   #posts-container .posts-nav {
@@ -42,6 +71,7 @@
     #posts-container .post-detail span {
       float: left; }
     #posts-container .post-detail ul.inline-tags {
+      margin: 0;
       padding-left: 0;
       position: relative;
       float: right; }
