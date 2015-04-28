@@ -1,6 +1,15 @@
-<ul>
-  <li ng-repeat="post in search.results">
-    <a ng-link="post({ id: post.link })" ng-bind="post.title"></a>
-    <span ng-repeat="tag in post.tags" ng-bind="tag"></span>
-  </li>
-</ul>
+<div id="search-container">
+  <ul>
+    <li ng-repeat="post in search.results">
+      <a ng-link="post({ id: post.link })">
+        <h3 ng-bind="post.title"></h3>
+      </a>
+      <div class="result-detail">
+        <span>{{ post.key | parseUrlDate | date:'mediumDate' }}</span>
+        <ul>Matches:
+          <li ng-repeat="tag in post.tags" ng-bind="tag"></li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>

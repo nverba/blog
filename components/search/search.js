@@ -2,7 +2,7 @@
 
 var _ = require('lodash');
 
-angular.module('search.component', ['ngNewRouter'])
+angular.module('search.component', ['ngNewRouter', 'statique:filters'])
   .controller('SearchController', ['$rootScope', '$location', '$http', '$q', SearchControllerFn]);
 
 var tags   = {};
