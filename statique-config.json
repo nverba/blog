@@ -3,8 +3,8 @@
   "rootUrl": "http//localhost:8080/",
 
   "title": "Statique Blog",
-  "name": "Me",
-  "tagline": "This is my Blog.",
+  "name": "You",
+  "tagline": "This is your blog.",
 
   "profileImage": "./src/images/placeholder.png"
 
