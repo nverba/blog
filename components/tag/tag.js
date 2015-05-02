@@ -6,8 +6,11 @@ angular.module('tag.component', ['ngNewRouter'])
   .controller('TagController', ['$http', '$rootScope', '$router', '$location', TagControllerFn])
   .directive('focusInput', [FocusInputDirectiveFn]);
 
+// vars to preserve state on redirect
+
 var PATH_HISTORY;
 var LOCATION;
+var INPUT_FOCUS;
 
 function TagControllerFn($http, $rootScope, $router, $location) {
 
@@ -77,8 +80,6 @@ function TagControllerFn($http, $rootScope, $router, $location) {
 
 // DIRECTIVE FUNCTIONS
 
-var INPUT_FOCUS;
-
 function FocusInputDirectiveFn() {
   return {
     restrict: 'A',
@@ -88,6 +89,8 @@ function FocusInputDirectiveFn() {
 
   function focusInputLink(scope, $element, attrs) {
 
+    // retain input focus on page update
+
     if (INPUT_FOCUS) {
       $element[0].focus();
     }
@@ -96,9 +99,7 @@ function FocusInputDirectiveFn() {
       INPUT_FOCUS = true;
     });
 
-    $element[0].addEventListener('blur', function (event) {
-      INPUT_FOCUS = false;
-    });
+    // Give focus to input when following tag anchor
 
     scope.$watchCollection('tag.search_string', function (newValue) {
       
