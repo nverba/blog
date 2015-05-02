@@ -77,6 +77,8 @@ function TagControllerFn($http, $rootScope, $router, $location) {
 
 // DIRECTIVE FUNCTIONS
 
+var INPUT_FOCUS;
+
 function FocusInputDirectiveFn() {
   return {
     restrict: 'A',
@@ -85,6 +87,18 @@ function FocusInputDirectiveFn() {
   };
 
   function focusInputLink(scope, $element, attrs) {
+
+    if (INPUT_FOCUS) {
+      $element[0].focus();
+    }
+
+    $element[0].addEventListener('focus', function (event) {
+      INPUT_FOCUS = true;
+    });
+
+    $element[0].addEventListener('blur', function (event) {
+      INPUT_FOCUS = false;
+    });
 
     scope.$watchCollection('tag.search_string', function (newValue) {
       
