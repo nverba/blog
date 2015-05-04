@@ -1,11 +1,11 @@
 {
 
-  "rootUrl": "http://localhost:8080/",
+  "rootUrl": "http://nverba.github.io/blog",
 
-  "title": "Statique Blog",
-  "name": "You",
-  "tagline": "This is your blog.",
+  "title": "Nverba",
+  "name": "Nverba",
+  "tagline": "My personal blog on application development and startups",
 
-  "profileImage": "./src/images/placeholder.png"
+  "profileImage": "./src/images/k.jpg"
 
 }
